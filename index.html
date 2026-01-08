@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Safari Day with Love</title>
 
 <style>
@@ -43,9 +43,9 @@ body.fade-black::after{
 .card{
   background:rgba(255,255,255,0.88);
   backdrop-filter:blur(10px);
-  padding:38px;
+  padding:30px 24px;
   border-radius:32px;
-  max-width:400px;
+  max-width:380px;
   text-align:center;
   box-shadow:0 25px 60px rgba(0,0,0,.15);
   z-index:2;
@@ -56,12 +56,12 @@ body.fade-black::after{
   opacity:0;
 }
 
-h1{font-size:2.3em;margin-bottom:14px;color:#ff6fae}
-p{line-height:1.7;color:#334155}
+h1{font-size:2.1em;margin-bottom:12px;color:#ff6fae}
+p{line-height:1.6;color:#334155;font-size:0.95em}
 
 button{
-  margin-top:24px;
-  padding:13px 36px;
+  margin-top:18px;
+  padding:11px 28px;
   border:none;
   border-radius:999px;
   background:linear-gradient(135deg,#ff8fc7,#ffd56b);
@@ -75,7 +75,7 @@ button:hover{transform:scale(1.05)}
   position:absolute;
   background:white;
   color:#1f2937;
-  padding:12px 18px;
+  padding:10px 16px;
   border-radius:18px;
   font-weight:600;
   font-size:.9em;
@@ -95,16 +95,16 @@ button:hover{transform:scale(1.05)}
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:100%;
+  width:90%;
+  max-width:360px;
   text-align:center;
   color:#e5e7eb;
-  font-size:1.15em;
+  font-size:1.1em;
   opacity:0;
   animation:fadeIn 3s forwards;
   z-index:10;
-  line-height:1.8;
+  line-height:1.7;
 }
-
 
 .star{
   position:fixed;
@@ -116,7 +116,7 @@ button:hover{transform:scale(1.05)}
 
 .controls{
   position:fixed;
-  bottom:18px;
+  bottom:5vh; /* aman untuk HP */
   left:50%;
   transform:translateX(-50%);
   display:flex;
@@ -173,10 +173,10 @@ button:hover{transform:scale(1.05)}
 <div class="card" id="card">
   <h1>Hi Reno🦁💖</h1>
   <p>
-    Today is your Safari Day!  
-    <br>Enjoy every moment, see cute animals,  
-    laugh a lot, and don’t forget… 
-   <br> someone here loves you sooo muchh💗</br>
+    Today is your Safari Day!<br>
+    Enjoy every moment, see cute animals,<br>
+    laugh a lot, and don’t forget…<br>
+    someone here loves you sooo muchh💗
   </p>
   <button onclick="startSafari()">Start Megical World💌</button>
 </div>
@@ -198,10 +198,8 @@ const card=document.getElementById("card");
 pop.volume=.25;
 finalSound.volume=.4;
 
-document.body.addEventListener("click",()=>{
-  [pop,finalSound].forEach(s=>{
-    s.play().then(()=>{s.pause();s.currentTime=0}).catch(()=>{})
-  });
+document.body.addEventListener("click",()=>{ 
+  [pop,finalSound].forEach(s=>{ s.play().then(()=>{s.pause();s.currentTime=0}).catch(()=>{}) }); 
 },{once:true});
 
 function startSafari(){
@@ -209,18 +207,16 @@ function startSafari(){
   pop.play();
 
   const emojis = ["🌿","🍃","✨","🤍","🦁", "🐘"];
-  const total = 6; // lebih calm
+  const total = 6; // calm effect
 
   for(let i = 0; i < total; i++){
     const e = document.createElement("div");
     e.className = "emoji";
     e.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-
     e.style.left = (10 + Math.random()*80) + "vw";
     e.style.fontSize = (16 + Math.random()*6) + "px";
     e.style.animationDuration = (7 + Math.random()*4) + "s";
     e.style.opacity = .6;
-
     document.body.appendChild(e);
     setTimeout(()=>e.remove(),10000);
   }
@@ -298,15 +294,12 @@ function nightMode(){
     g.className="goodnight";
     g.innerText=
 `Good night 🤍🌙
-
 Rest well and let today’s memories settle gently.
 You’ve done enough for today, Tomorrow will be another beautiful day!`;
     document.body.appendChild(g);
   },1800);
 
-  setTimeout(()=>{
-    document.body.classList.add("fade-black");
-  },6800);
+  setTimeout(()=>{ document.body.classList.add("fade-black"); },6800);
 }
 
 function createStars(){
